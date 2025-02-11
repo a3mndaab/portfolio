@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image Carousel</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .carousel-container {
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel img {
+            width: 400px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/042/820/184/small_2x/flowers-composition-gypsophila-flowers-on-pastel-pink-background-flat-lay-top-view-copy-space-photo.jpg" alt="Slide 1">
+            <img src="https://static.vecteezy.com/system/resources/previews/024/448/323/large_2x/top-view-image-of-pink-flowers-composition-over-pastel-background-generate-ai-free-photo.jpg" alt="Slide 2">
+            <img src="https://img.freepik.com/premium-photo/row-colorful-wildflowers-against-soft-pink-background_36682-125952.jpg?w=360" alt="Slide 3">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/042/820/184/small_2x/flowers-composition-gypsophila-flowers-on-pastel-pink-background-flat-lay-top-view-copy-space-photo.jpg" alt="Slide 4">
+            <img src="https://img.freepik.com/premium-photo/pink-floral-frame-soft-pink-background_14117-739364.jpg" alt="Slide 5">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <script>
+        let index = 0;
+
+        function showSlide() {
+            const carousel = document.querySelector(".carousel");
+            const slides = document.querySelectorAll(".carousel img");
+            if (index >= slides.length) { index = 0; }
+            if (index < 0) { index = slides.length - 1; }
+            carousel.style.transform = `translateX(${-index * 400}px)`;
+        }
+
+        function nextSlide() {
+            index++;
+            showSlide();
+        }
+
+        function prevSlide() {
+            index--;
+            showSlide();
+        }
+    </script>
+
+</body>
+</html>
